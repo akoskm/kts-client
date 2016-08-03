@@ -15,11 +15,11 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 const styles = {
   container: {
     textAlign: 'center',
-    paddingTop: 200,
+    paddingTop: 200
   },
   appBar: {
     position: 'fixed',
-    top: 0,
+    top: 0
   }
 };
 
