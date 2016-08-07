@@ -7,6 +7,7 @@ import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
 import { spacing, typography, zIndex } from 'material-ui/styles';
 import { cyan500 } from 'material-ui/styles/colors';
+import Filters from './Filters';
 
 const SelectableList = MakeSelectable(List);
 
@@ -105,6 +106,20 @@ class AppNavDrawer extends React.Component {
       style
     } = this.props;
 
+    let filterMenu = Filters.map((filter) => {
+      let filterValues = filter.values.map((f) => {
+        return (<MenuItem value={f.value} primaryText={f.label} />);
+      });
+      return (
+        <div>
+          <span>{filter.label}</span>
+          <DropDownMenu value={this.state.filterValue} onChange={this.handleChange}>
+            {filterValues}
+          </DropDownMenu>
+        </div>
+      );
+    });
+
     return (
       <Drawer
         style={style}
@@ -116,14 +131,7 @@ class AppNavDrawer extends React.Component {
         <div style={styles.logo} onTouchTap={this.handleTouchTapHeader}>
           Search
         </div>
-        <span style={styles.version}>Label</span>
-        <DropDownMenu value={this.state.filterValue} onChange={this.handleChange}>
-          <MenuItem value={1} primaryText='Never' />
-          <MenuItem value={2} primaryText='Every Night' />
-          <MenuItem value={3} primaryText='Weeknights' />
-          <MenuItem value={4} primaryText='Weekends' />
-          <MenuItem value={5} primaryText='Weekly' />
-        </DropDownMenu>
+        {filterMenu}
         <Divider />
         <SelectableList
           onChange={this.handleRequestChangeLink}
