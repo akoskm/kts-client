@@ -49,7 +49,7 @@ class AppNavDrawer extends React.Component {
       if (request.readyState === 4 && request.status === 200) {
         self.setState({
           muiVersions: JSON.parse(request.responseText),
-          version: JSON.parse(request.responseText)[0],
+          version: JSON.parse(request.responseText)[0]
         });
       }
     };
@@ -76,7 +76,7 @@ class AppNavDrawer extends React.Component {
     } else {
       window.location = `http://www.material-ui.com/${value}`;
     }
-  };
+  }
 
   currentVersion() {
     if (window.location.hostname === 'localhost') return this.state.muiVersions[0];

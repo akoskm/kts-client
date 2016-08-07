@@ -26,7 +26,7 @@ const styles = {
 const muiTheme = getMuiTheme({
   palette: {
     accent1Color: deepOrange500
-  },
+  }
 });
 
 class Main extends Component {
@@ -76,8 +76,8 @@ class Main extends Component {
     let navDrawerOpen = this.state.navDrawerOpen;
     const standardActions = (
       <FlatButton
-        label="Ok"
-        primary={true}
+        label='Ok'
+        primary
         onTouchTap={this.handleRequestClose}
       />
     );
@@ -94,8 +94,8 @@ class Main extends Component {
             1-2-3-4-5
           </Dialog>
           <AppBar
-            title="KTS Client"
-            iconClassNameRight="muidocs-icon-navigation-expand-more"
+            title='KTS Client'
+            iconClassNameRight='muidocs-icon-navigation-expand-more'
             onLeftIconButtonTouchTap={this.handleTouchTapLeftIconButton}
             style={styles.appBar}
           />
@@ -110,8 +110,8 @@ class Main extends Component {
           <h1>Material-UI</h1>
           <h2>example project</h2>
           <RaisedButton
-            label="Super Secret Password"
-            secondary={true}
+            label='Super Secret Password'
+            secondary
             onTouchTap={this.handleTouchTap}
           />
         </div>
