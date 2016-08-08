@@ -9,7 +9,7 @@ const config = {
   entry: [
     'webpack/hot/dev-server',
     'webpack/hot/only-dev-server',
-    path.join(__dirname, '/src/app/app.js'),
+    path.join(__dirname, '/src/app/App.js')
   ],
   // Server Configuration options
   devServer: {
@@ -18,12 +18,12 @@ const config = {
     hot: true, // Live-reload
     inline: true,
     port: 3000, // Port Number
-    host: 'localhost', // Change to '0.0.0.0' for external facing server
+    host: 'localhost' // Change to '0.0.0.0' for external facing server
   },
   devtool: 'eval',
   output: {
     path: buildPath, // Path of output file
-    filename: 'app.js',
+    filename: 'App.js'
   },
   plugins: [
     // Enables Hot Modules Replacement
@@ -32,19 +32,21 @@ const config = {
     new webpack.NoErrorsPlugin(),
     // Moves files
     new TransferWebpackPlugin([
-      {from: 'www'},
-    ], path.resolve(__dirname, 'src')),
+      { from: 'www' }
+    ], path.resolve(__dirname, 'src'))
   ],
   module: {
     loaders: [
       {
         // React-hot loader and
-        test: /\.js$/, // All .js files
-        loaders: ['react-hot', 'babel-loader'], // react-hot is like browser sync and babel loads jsx and es6-7
-        exclude: [nodeModulesPath],
-      },
-    ],
-  },
+        // All .js files
+        test: /\.js$/,
+        // react-hot is like browser sync and babel loads jsx and es6-7
+        loaders: ['react-hot', 'babel-loader'],
+        exclude: [nodeModulesPath]
+      }
+    ]
+  }
 };
 
 module.exports = config;
