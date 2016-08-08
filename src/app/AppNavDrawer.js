@@ -59,39 +59,6 @@ class AppNavDrawer extends React.Component {
     request.send();
   }
 
-  firstNonPreReleaseVersion() {
-    let version;
-    for (let i = 0; i < this.state.muiVersions.length; i++) {
-      version = this.state.muiVersions[i];
-      // If the version doesn't contain '-' and isn't 'HEAD'
-      if (!/-/.test(version) && version !== 'HEAD') {
-        break;
-      }
-    }
-    return version;
-  }
-
-  handleVersionChange(event, index, value) {
-    if (value === this.firstNonPreReleaseVersion()) {
-      window.location = 'http://www.material-ui.com/';
-    } else {
-      window.location = `http://www.material-ui.com/${value}`;
-    }
-  }
-
-  currentVersion() {
-    if (window.location.hostname === 'localhost') return this.state.muiVersions[0];
-    if (window.location.pathname === '/') {
-      return this.firstNonPreReleaseVersion();
-    } else {
-      return window.location.pathname.replace(/\//g, '');
-    }
-  }
-
-  handleRequestChangeLink(event, value) {
-    window.location = value;
-  }
-
   handleTouchTapHeader() {
     // this.context.router.push('/');
     this.props.onRequestChangeNavDrawer(false);
