@@ -8,6 +8,7 @@ import MenuItem from 'material-ui/MenuItem';
 import { spacing, typography, zIndex } from 'material-ui/styles';
 import { cyan500 } from 'material-ui/styles/colors';
 import Filters from './Filters';
+import FilterComponent from './FilterComponent';
 
 const SelectableList = MakeSelectable(List);
 
@@ -34,10 +35,11 @@ class AppNavDrawer extends React.Component {
     super(props);
 
     this.handleTouchTapHeader = this.handleTouchTapHeader.bind(this);
+    this.handleChange = this.handleChange.bind(this);
 
     this.state = {
       muiVersions: [],
-      filterValue: 2
+      filterValues: {}
     };
   }
 
@@ -64,6 +66,14 @@ class AppNavDrawer extends React.Component {
     this.props.onRequestChangeNavDrawer(false);
   }
 
+  handleChange(key, value) {
+    let newFilterValues = this.state.filterValues;
+    newFilterValues[key] = value;
+    this.setState({
+      filterValues: newFilterValues
+    });
+  }
+
   render() {
     const {
       location,
@@ -73,17 +83,14 @@ class AppNavDrawer extends React.Component {
       style
     } = this.props;
 
-    let filterMenu = Filters.map((filter) => {
-      let filterValues = filter.values.map((f) => {
-        return (<MenuItem value={f.value} primaryText={f.label} />);
-      });
+    let filterMenu = Filters.map((filter, index) => {
       return (
-        <div>
-          <span>{filter.label}</span>
-          <DropDownMenu value={this.state.filterValue} onChange={this.handleChange}>
-            {filterValues}
-          </DropDownMenu>
-        </div>
+        <FilterComponent
+          key={index}
+          filter={filter}
+          handleChange={this.handleChange}
+          value={this.state.filterValues[filter.queryParam]}
+        />
       );
     });
 

@@ -1,6 +1,6 @@
 const filters = [{
   label: 'First Filter',
-  queryParam: 'ff',
+  queryParam: 'firstfilter',
   values: [{
     label: 'first',
     value: 1
@@ -13,7 +13,7 @@ const filters = [{
   }]
 }, {
   label: 'Second Filter',
-  queryParam: 'ff',
+  queryParam: 'secondfilter',
   values: [{
     label: 'first',
     value: 1
