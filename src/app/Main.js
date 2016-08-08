@@ -1,7 +1,3 @@
-/**
- * In this file, we create a React component
- * which incorporates components provided by Material-UI.
- */
 import React, { Component } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import Dialog from 'material-ui/Dialog';
@@ -10,18 +6,77 @@ import { deepOrange500 } from 'material-ui/styles/colors';
 import FlatButton from 'material-ui/FlatButton';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import { GridList, GridTile } from 'material-ui/GridList';
+import Subheader from 'material-ui/Subheader';
+import IconButton from 'material-ui/IconButton';
+import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 import AppNavDrawer from './AppNavDrawer';
 
 const styles = {
   container: {
     textAlign: 'center',
-    paddingTop: 200
+    paddingTop: 70
   },
   appBar: {
     position: 'fixed',
     top: 0
+  },
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    margin: '0px 10px 0px 10px'
+  },
+  gridList: {
+    width: '100%',
+    // height: 500,
+    overflowY: 'auto',
+    marginBottom: 24
   }
 };
+
+const tilesData = [
+  {
+    img: 'images/grid-list/00-52-29-429_640.jpg',
+    title: 'Breakfast',
+    author: 'jill111'
+  },
+  {
+    img: 'images/grid-list/burger-827309_640.jpg',
+    title: 'Tasty burger',
+    author: 'pashminu'
+  },
+  {
+    img: 'images/grid-list/camera-813814_640.jpg',
+    title: 'Camera',
+    author: 'Danson67'
+  },
+  {
+    img: 'images/grid-list/morning-819362_640.jpg',
+    title: 'Morning',
+    author: 'fancycrave1'
+  },
+  {
+    img: 'images/grid-list/hats-829509_640.jpg',
+    title: 'Hats',
+    author: 'Hans'
+  },
+  {
+    img: 'images/grid-list/honey-823614_640.jpg',
+    title: 'Honey',
+    author: 'fancycravel'
+  },
+  {
+    img: 'images/grid-list/vegetables-790022_640.jpg',
+    title: 'Vegetables',
+    author: 'jill111'
+  },
+  {
+    img: 'images/grid-list/water-plant-821293_640.jpg',
+    title: 'Water plant',
+    author: 'BkrmadtyaKarki'
+  }
+];
 
 const muiTheme = getMuiTheme({
   palette: {
@@ -107,13 +162,23 @@ class Main extends Component {
             onChangeList={this.handleChangeList}
             open={navDrawerOpen}
           />
-          <h1>Material-UI</h1>
-          <h2>example project</h2>
-          <RaisedButton
-            label='Super Secret Password'
-            secondary
-            onTouchTap={this.handleTouchTap}
-          />
+          <div style={styles.root}>
+            <GridList
+              cellHeight={200}
+              style={styles.gridList}
+            >
+              {tilesData.map((tile) => (
+                <GridTile
+                  key={tile.img}
+                  title={tile.title}
+                  subtitle={<span>by <b>{tile.author}</b></span>}
+                  actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
+                >
+                  <img role='presentation' src={tile.img} />
+                </GridTile>
+              ))}
+            </GridList>
+          </div>
         </div>
       </MuiThemeProvider>
     );
