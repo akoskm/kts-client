@@ -25,7 +25,7 @@ const styles = {
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
-    margin: '0px 10px 0px 10px'
+    margin: '0px 4px 0px 4px'
   },
   gridList: {
     width: '100%',
