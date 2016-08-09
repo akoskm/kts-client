@@ -123,6 +123,10 @@ class Main extends Component {
     });
   }
 
+  handleChangeFilter(filters) {
+    console.log(filters);
+  }
+
   render() {
     styles.navDrawer = {
       zIndex: styles.appBar.zIndex - 1
@@ -151,7 +155,7 @@ class Main extends Component {
             location={location}
             docked={docked}
             onRequestChangeNavDrawer={this.handleChangeRequestNavDrawer}
-            onChangeList={this.handleChangeList}
+            onHandleChangeFilter={this.handleChangeFilter}
             open={navDrawerOpen}
           />
           <div style={styles.root}>

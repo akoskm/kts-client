@@ -73,6 +73,7 @@ class AppNavDrawer extends React.Component {
     this.setState({
       filterValues: newFilterValues
     });
+    this.props.onHandleChangeFilter(newFilterValues);
   }
 
   render() {
@@ -123,6 +124,7 @@ AppNavDrawer.propTypes = {
   docked: React.PropTypes.bool.isRequired,
   location: React.PropTypes.object.isRequired,
   onRequestChangeNavDrawer: React.PropTypes.func.isRequired,
+  onHandleChangeFilter: React.PropTypes.func.isRequired,
   open: React.PropTypes.bool.isRequired,
   style: React.PropTypes.object
 };
