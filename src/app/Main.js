@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
-import Dialog from 'material-ui/Dialog';
 import AppBar from 'material-ui/AppBar';
 import { deepOrange500 } from 'material-ui/styles/colors';
 import FlatButton from 'material-ui/FlatButton';
@@ -10,7 +9,8 @@ import { GridList, GridTile } from 'material-ui/GridList';
 import Subheader from 'material-ui/Subheader';
 import IconButton from 'material-ui/IconButton';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
-import AppNavDrawer from './AppNavDrawer';
+
+import AppNavDrawer from './components/AppNavDrawer';
 
 const styles = {
   container: {
@@ -101,13 +101,13 @@ class Main extends Component {
 
   handleRequestClose() {
     this.setState({
-      open: false,
+      open: false
     });
   }
 
   handleTouchTap() {
     this.setState({
-      open: true,
+      open: true
     });
   }
 
@@ -140,14 +140,6 @@ class Main extends Component {
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div style={styles.container}>
-          <Dialog
-            open={this.state.open}
-            title="Super Secret Password"
-            actions={standardActions}
-            onRequestClose={this.handleRequestClose}
-          >
-            1-2-3-4-5
-          </Dialog>
           <AppBar
             title='KTS Client'
             iconClassNameRight='muidocs-icon-navigation-expand-more'
@@ -172,7 +164,7 @@ class Main extends Component {
                   key={tile.img}
                   title={tile.title}
                   subtitle={<span>by <b>{tile.author}</b></span>}
-                  actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
+                  actionIcon={<IconButton><StarBorder color='white' /></IconButton>}
                 >
                   <img role='presentation' src={tile.img} />
                 </GridTile>
