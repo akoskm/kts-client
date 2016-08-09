@@ -9,7 +9,7 @@ import { spacing, typography, zIndex } from 'material-ui/styles';
 import { cyan500 } from 'material-ui/styles/colors';
 
 import Filters from './Filters';
-import FilterComponent from './FilterComponent';
+import Filter from './Filter';
 
 const SelectableList = MakeSelectable(List);
 
@@ -86,7 +86,7 @@ class AppNavDrawer extends React.Component {
 
     let filterMenu = Filters.map((filter, index) => {
       return (
-        <FilterComponent
+        <Filter
           key={index}
           filter={filter}
           handleChange={this.handleChange}
