@@ -3,26 +3,26 @@ const filters = [{
   queryParam: 'firstfilter',
   values: [{
     label: 'first',
-    value: 1
+    value: 'one'
   }, {
     label: 'second',
-    value: 2
+    value: 'two'
   }, {
     label: 'third',
-    value: 3
+    value: 'three'
   }]
 }, {
   label: 'Second Filter',
   queryParam: 'secondfilter',
   values: [{
     label: 'first',
-    value: 1
+    value: 'one'
   }, {
     label: 'second',
-    value: 2
+    value: 'two'
   }, {
     label: 'third',
-    value: 3
+    value: 'three'
   }]
 }];
 

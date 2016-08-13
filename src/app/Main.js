@@ -1,3 +1,4 @@
+import request from 'superagent';
 import React, { Component } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import AppBar from 'material-ui/AppBar';
@@ -124,7 +125,28 @@ class Main extends Component {
   }
 
   handleChangeFilter(filters) {
-    console.log(filters);
+    const keys = Object.keys(filters);
+    if (keys && keys.length > 0) {
+      let tagsComponent;
+      let url = 'http://localhost:3000/api/search?page=malom-salon';
+      keys.forEach((k) => {
+        tagsComponent = '&tags='.concat(filters[k]);
+        url += tagsComponent;
+      });
+      console.log(url);
+      request
+        .get(url)
+        .send({ name: 'Manny', species: 'cat' })
+        // .set('X-API-Key', 'foobar')
+        .set('Accept', 'application/json')
+        .end((err, res) => {
+          if (!res.body.success) {
+            alert('error communicating with the server');
+          } else {
+            console.log(res.body.result);
+          }
+        });
+    }
   }
 
   render() {
