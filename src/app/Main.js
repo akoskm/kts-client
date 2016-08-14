@@ -30,9 +30,13 @@ const styles = {
   },
   gridList: {
     width: '100%',
-    // height: 500,
+    cellHeight: 500,
     overflowY: 'auto',
-    marginBottom: 24
+    marginBottom: 24,
+    cellImg: {
+      height: '100%',
+      width: 'auto'
+    }
   }
 };
 
@@ -92,11 +96,13 @@ class Main extends Component {
     this.handleTouchTapLeftIconButton = this.handleTouchTapLeftIconButton.bind(this);
     this.handleChangeRequestNavDrawer = this.handleChangeRequestNavDrawer.bind(this);
     this.handleRequestClose = this.handleRequestClose.bind(this);
+    this.handleChangeFilter = this.handleChangeFilter.bind(this);
     this.handleTouchTap = this.handleTouchTap.bind(this);
 
     this.state = {
       open: false,
-      navDrawerOpen: false
+      navDrawerOpen: false,
+      tilesData
     };
   }
 
@@ -150,6 +156,7 @@ class Main extends Component {
             console.log(body.result);
             if (body.result && body.result.length > 0) {
               tilesData = body.result.map((p) => {
+                // TODO this could be done on the server side
                 const url = 'http://localhost:3000/static/'.concat(p.page.nameslug)
                   .concat('_img/')
                   .concat(p.filename);
@@ -158,6 +165,10 @@ class Main extends Component {
                   title: p.filename,
                   author: p._d
                 };
+              });
+
+              this.setState({
+                tilesData
               });
             }
           }
@@ -170,6 +181,7 @@ class Main extends Component {
       zIndex: styles.appBar.zIndex - 1
     };
     let docked = false;
+    const tilesData = this.state.tilesData;
     let navDrawerOpen = this.state.navDrawerOpen;
     const standardActions = (
       <FlatButton
@@ -198,7 +210,7 @@ class Main extends Component {
           />
           <div style={styles.root}>
             <GridList
-              cellHeight={200}
+              cellHeight={styles.gridList.cellHeight}
               style={styles.gridList}
             >
               {tilesData.map((tile) => (
@@ -208,7 +220,7 @@ class Main extends Component {
                   subtitle={<span>by <b>{tile.author}</b></span>}
                   actionIcon={<IconButton><StarBorder color='white' /></IconButton>}
                 >
-                  <img role='presentation' src={tile.img} />
+                  <img role='presentation' src={tile.img} style={styles.gridList.cellImg} />
                 </GridTile>
               ))}
             </GridList>
