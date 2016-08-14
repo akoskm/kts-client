@@ -36,7 +36,7 @@ const styles = {
   }
 };
 
-const tilesData = [
+let tilesData = [
   {
     img: 'images/grid-list/00-52-29-429_640.jpg',
     title: 'Breakfast',
@@ -143,10 +143,23 @@ class Main extends Component {
         // .set('X-API-Key', 'foobar')
         .set('Accept', 'application/json')
         .end((err, res) => {
-          if (!res.body.success) {
+          const body = res.body;
+          if (!body.success) {
             alert('error communicating with the server');
           } else {
-            console.log(res.body.result);
+            console.log(body.result);
+            if (body.result && body.result.length > 0) {
+              tilesData = body.result.map((p) => {
+                const url = 'http://localhost:3000/static/'.concat(p.page.nameslug)
+                  .concat('_img/')
+                  .concat(p.filename);
+                return {
+                  img: url,
+                  title: p.filename,
+                  author: p._d
+                };
+              });
+            }
           }
         });
     }
