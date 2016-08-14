@@ -128,9 +128,12 @@ class Main extends Component {
     const keys = Object.keys(filters);
     if (keys && keys.length > 0) {
       let tagsComponent;
-      let url = 'http://localhost:3000/api/search?page=malom-salon';
-      keys.forEach((k) => {
-        tagsComponent = '&tags='.concat(filters[k]);
+      let url = 'http://localhost:3000/api/search?';
+      keys.forEach((k, i) => {
+        tagsComponent = 'tags='.concat(filters[k]);
+        if (i < keys.length - 1) {
+          tagsComponent += '&';
+        }
         url += tagsComponent;
       });
       console.log(url);
