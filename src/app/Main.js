@@ -8,9 +8,8 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { GridList, GridTile } from 'material-ui/GridList';
 import Subheader from 'material-ui/Subheader';
-import IconButton from 'material-ui/IconButton';
-import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 
+import PhotoTile from './components/PhotoTile';
 import AppNavDrawer from './components/AppNavDrawer';
 
 const styles = {
@@ -97,6 +96,7 @@ class Main extends Component {
     this.handleChangeRequestNavDrawer = this.handleChangeRequestNavDrawer.bind(this);
     this.handleRequestClose = this.handleRequestClose.bind(this);
     this.handleChangeFilter = this.handleChangeFilter.bind(this);
+    this.handleTileClick = this.handleTileClick.bind(this);
     this.handleTouchTap = this.handleTouchTap.bind(this);
 
     this.state = {
@@ -176,6 +176,10 @@ class Main extends Component {
     }
   }
 
+  handleTileClick(tile) {
+    console.log('action', tile);
+  }
+
   render() {
     styles.navDrawer = {
       zIndex: styles.appBar.zIndex - 1
@@ -214,14 +218,7 @@ class Main extends Component {
               style={styles.gridList}
             >
               {tilesData.map((tile) => (
-                <GridTile
-                  key={tile.img}
-                  title={tile.title}
-                  subtitle={<span>by <b>{tile.author}</b></span>}
-                  actionIcon={<IconButton><StarBorder color='white' /></IconButton>}
-                >
-                  <img role='presentation' src={tile.img} style={styles.gridList.cellImg} />
-                </GridTile>
+                <PhotoTile tile={tile} handleTileClick={this.handleTileClick} style={styles.gridList.cellImg} />
               ))}
             </GridList>
           </div>
