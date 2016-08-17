@@ -150,7 +150,8 @@ class Main extends Component {
         return {
           img: url,
           title: p.filename,
-          author: p._d
+          author: p.page.nameslug,
+          page: p.page.nameslug
         };
       });
     }
@@ -198,8 +199,13 @@ class Main extends Component {
               cellHeight={styles.gridList.cellHeight}
               style={styles.gridList}
             >
-              {tilesData.map((tile) => (
-                <PhotoTile tile={tile} handleTileClick={this.handleTileClick} style={styles.gridList.cellImg} />
+              {tilesData.map((tile, i) => (
+                <PhotoTile
+                  key={i}
+                  tile={tile}
+                  handleTileClick={this.handleTileClick}
+                  style={styles.gridList.cellImg}
+                />
               ))}
             </GridList>
           </div>
