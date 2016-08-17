@@ -16,7 +16,7 @@ injectTapEventPlugin();
 render((
   <Router history={browserHistory}>
     <Route path='/' component={Main}>
-      <Route path='/page' component={Page} />
+      <Route path='/page/:nameslug' component={Page} />
     </Route>
   </Router>), document.getElementById('app'));
 
