@@ -4,7 +4,7 @@ import { Router, Route, browserHistory } from 'react-router';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
 import Main from './Main';
-import Page from './components/Page';
+// import Page from './components/Page';
 
 // Needed for onTouchTap
 // http://stackoverflow.com/a/34015469/988941
@@ -15,8 +15,6 @@ injectTapEventPlugin();
 // render(<Main />, document.getElementById('app'));
 render((
   <Router history={browserHistory}>
-    <Route path='/' component={Main}>
-      <Route path='/page/:nameslug' component={Page} />
-    </Route>
+    <Route path='/' component={Main} />
   </Router>), document.getElementById('app'));
 

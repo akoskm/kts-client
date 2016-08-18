@@ -8,7 +8,9 @@
   },
   "scripts": {
     "start": "webpack-dev-server --config webpack-dev-server.config.js --progress --inline --colors",
-    "build": "webpack --config webpack-production.config.js --progress --colors"
+    "build": "webpack --config webpack-production.config.js --progress --colors",
+    "dev": "webpack --config webpack-dev-server.config.js --progress --inline --colors",
+    "prod": "webpack -p --progress && node src/server"
   },
   "private": true,
   "devDependencies": {
