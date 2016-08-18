@@ -4,7 +4,7 @@ const buildPath = path.resolve(__dirname, 'build');
 const nodeModulesPath = path.resolve(__dirname, 'node_modules');
 const TransferWebpackPlugin = require('transfer-webpack-plugin');
 
-const config = {
+const config = [{
   // Entry points to the project
   entry: [
     'webpack/hot/dev-server',
@@ -47,6 +47,28 @@ const config = {
       }
     ]
   }
-};
+}, {
+  name: 'server-side rendering',
+  entry: path.join(__dirname, 'src/server/page.js'),
+  target: 'node',
+  output: {
+    path: buildPath,
+    filename: 'server/page.generated.js',
+    publicPath: buildPath
+  },
+  externals: /^[a-z\-0-9]+$/,
+  module: {
+    loaders: [
+      {
+        // React-hot loader and
+        // All .js files
+        test: /\.js$/,
+        // react-hot is like browser sync and babel loads jsx and es6-7
+        loaders: ['react-hot', 'babel-loader'],
+        exclude: [nodeModulesPath]
+      }
+    ]
+  }
+}];
 
 module.exports = config;
