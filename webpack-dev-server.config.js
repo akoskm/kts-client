@@ -49,12 +49,13 @@ const config = [{
   }
 }, {
   name: 'server-side rendering',
-  entry: path.join(__dirname, 'src/server/page.js'),
+  entry: path.join(__dirname, 'src/server/index.js'),
   target: 'node',
   output: {
     path: buildPath,
-    filename: 'server/page.generated.js',
-    publicPath: buildPath
+    filename: 'server/index.js',
+    publicPath: buildPath,
+    libraryTarget: 'commonjs2'
   },
   externals: /^[a-z\-0-9]+$/,
   module: {

@@ -1,13 +1,13 @@
-import React from 'react';
-import { render } from 'react-dom';
+function generate(req, scriptFilename) {
+  return '<html lang=\'en\'>\
+    <head>\
+      <title>KTS Client</title>\
+    </head>\
+    <body>\
+      <div id=\'app\' />\
+    </body>\
+    <script src=\'App.js\' />\
+  </html>';
+}
 
-module.exports = (req, scriptFilename) =>
-  <html lang='en'>
-    <head>
-      <title>KTS Client</title>
-    </head>
-    <body>
-      <div id='app' />
-    </body>
-    <script src='App.js' />
-  </html>;
+export default { generate };

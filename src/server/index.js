@@ -8,7 +8,8 @@ const app = express();
 app.use(express.static(path.join(__dirname, '../../', 'build')));
 
 app.get('/', (req, res) => {
-  res.end(page(req));
+  const index = page.generate(req);
+  res.end(index);
 });
 
 const server = app.listen(4000, () => {
