@@ -1,14 +1,13 @@
 import React from 'react';
 import { render } from 'react-dom';
 
-module.exports = (req, scriptFilename) => {
-
-  return render(
-    <html class='no-js' lang=''>
-      <body>
-        <div id='app' />
-        <script src='App.js' />
-      </body>
-    </html>
-  );
-};
+module.exports = (req, scriptFilename) =>
+  <html lang='en'>
+    <head>
+      <title>KTS Client</title>
+    </head>
+    <body>
+      <div id='app' />
+    </body>
+    <script src='App.js' />
+  </html>;
