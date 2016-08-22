@@ -1,7 +1,5 @@
 import React from 'react';
-import DropDownMenu from 'material-ui/DropDownMenu';
-import MenuItem from 'material-ui/MenuItem';
-import { GridList, GridTile } from 'material-ui/GridList';
+import { GridTile } from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 
@@ -33,7 +31,7 @@ class PhotoTileComponent extends React.Component {
   }
 }
 
-PhotoTileComponent.protoTypes = {
+PhotoTileComponent.propTypes = {
   handleTileClick: React.PropTypes.func.isRequired,
   tile: React.PropTypes.object.isRequired,
   style: React.PropTypes.object.isRequired

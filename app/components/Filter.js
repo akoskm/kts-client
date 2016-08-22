@@ -15,8 +15,8 @@ class FilterComponent extends React.Component {
   }
 
   render() {
-    let filter = this.props.filter;
-    let filterValues = filter.values.map((f, index) => {
+    const filter = this.props.filter;
+    const filterValues = filter.values.map((f, index) => {
       return (<MenuItem key={index} value={f.value} primaryText={f.label} />);
     });
     return (
@@ -30,8 +30,10 @@ class FilterComponent extends React.Component {
   }
 }
 
-FilterComponent.protoTypes = {
-  handleChange: React.PropTypes.func.isRequired
+FilterComponent.propTypes = {
+  handleChange: React.PropTypes.func.isRequired,
+  filter: React.PropTypes.obj.isRequired,
+  value: React.PropTypes.obj.isRequired
 };
 
 export default FilterComponent;

@@ -3,8 +3,6 @@ import Drawer from 'material-ui/Drawer';
 import { List, ListItem, MakeSelectable } from 'material-ui/List';
 import Divider from 'material-ui/Divider';
 import Subheader from 'material-ui/Subheader';
-import DropDownMenu from 'material-ui/DropDownMenu';
-import MenuItem from 'material-ui/MenuItem';
 import { spacing, typography, zIndex } from 'material-ui/styles';
 import { cyan500 } from 'material-ui/styles/colors';
 
@@ -68,7 +66,7 @@ class AppNavDrawer extends React.Component {
   }
 
   handleChange(key, value) {
-    let newFilterValues = this.state.filterValues;
+    const newFilterValues = this.state.filterValues;
     newFilterValues[key] = value;
     this.setState({
       filterValues: newFilterValues
@@ -78,7 +76,6 @@ class AppNavDrawer extends React.Component {
 
   render() {
     const {
-      location,
       docked,
       onRequestChangeNavDrawer,
       open,
@@ -113,7 +110,7 @@ class AppNavDrawer extends React.Component {
           onChange={this.handleRequestChangeLink}
         >
           <Subheader>Resources</Subheader>
-          <ListItem primaryText='Contact' value='https://github.com/callemall/material-ui' />
+          <ListItem primaryText="Contact" value="https://github.com/callemall/material-ui" />
         </SelectableList>
       </Drawer>
     );
