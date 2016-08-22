@@ -23,9 +23,9 @@ class PhotoTileComponent extends React.Component {
         title={tile.title}
         subtitle={<span>by <b>{tile.author}</b></span>}
         onClick={this.handleTileClick}
-        actionIcon={<IconButton><StarBorder color='white' /></IconButton>}
+        actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
       >
-        <img role='presentation' src={tile.img} style={this.props.style} />
+        <img role="presentation" src={tile.img} style={this.props.style} />
       </GridTile>
     );
   }

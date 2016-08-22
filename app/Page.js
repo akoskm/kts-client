@@ -7,7 +7,7 @@ class Page extends React.Component {
   }
 
   render() {
-    return '<span>{this.props.nameslug}</span>';
+    return (<div>Page</div>);
   }
 }
 

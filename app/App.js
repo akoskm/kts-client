@@ -157,7 +157,7 @@ class App extends Component {
   }
 
   handleTileClick(tile) {
-    console.log('action', tile);
+    this.context.router.push('/page/' + tile.page);
   }
 
   render() {
@@ -212,5 +212,9 @@ class App extends Component {
     );
   }
 }
+
+App.contextTypes = {
+  router: React.PropTypes.func.isRequired
+};
 
 export default App;
