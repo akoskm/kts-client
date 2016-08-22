@@ -32,8 +32,8 @@ class FilterComponent extends React.Component {
 
 FilterComponent.propTypes = {
   handleChange: React.PropTypes.func.isRequired,
-  // filter: React.PropTypes.obj.isRequired,
-  // value: React.PropTypes.obj.isRequired
+  filter: React.PropTypes.object.isRequired,
+  value: React.PropTypes.object.isRequired
 };
 
 export default FilterComponent;
