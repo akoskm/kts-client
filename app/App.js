@@ -1,29 +1,21 @@
 import request from 'superagent';
 import React, { Component } from 'react';
 import AppBar from 'material-ui/AppBar';
-import { deepOrange500 } from 'material-ui/styles/colors';
-import FlatButton from 'material-ui/FlatButton';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { GridList } from 'material-ui/GridList';
 
 import PhotoTile from './components/PhotoTile';
 import AppNavDrawer from './components/AppNavDrawer';
 
 const styles = {
-  container: {
-    textAlign: 'center',
-    paddingTop: 70
-  },
   appBar: {
     position: 'fixed',
-    top: 0
+    top: 0,
+    margin: '0px 0px 0px -8px'
   },
   root: {
     display: 'flex',
     flexWrap: 'wrap',
-    justifyContent: 'space-around',
-    margin: '0px 4px 0px 4px'
+    justifyContent: 'space-around'
   },
   gridList: {
     width: '100%',
@@ -36,12 +28,6 @@ const styles = {
     }
   }
 };
-
-const muiTheme = getMuiTheme({
-  palette: {
-    accent1Color: deepOrange500
-  }
-});
 
 class App extends Component {
   constructor(props, context) {
@@ -62,7 +48,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    let url = 'http://localhost:3000/api/search?';
+    const url = 'http://localhost:3000/api/search?';
     this.request = request
       .get(url)
       .set('Accept', 'application/json')
@@ -167,48 +153,39 @@ class App extends Component {
     let docked = false;
     const tilesData = this.state.tilesData;
     let navDrawerOpen = this.state.navDrawerOpen;
-    const standardActions = (
-      <FlatButton
-        label='Ok'
-        primary
-        onTouchTap={this.handleRequestClose}
-      />
-    );
 
     return (
-      <MuiThemeProvider muiTheme={muiTheme}>
-        <div style={styles.container}>
-          <AppBar
-            title='KTS Client'
-            iconClassNameRight='muidocs-icon-navigation-expand-more'
-            onLeftIconButtonTouchTap={this.handleTouchTapLeftIconButton}
-            style={styles.appBar}
-          />
-          <AppNavDrawer
-            style={styles.navDrawer}
-            location={location}
-            docked={docked}
-            onRequestChangeNavDrawer={this.handleChangeRequestNavDrawer}
-            onHandleChangeFilter={this.handleChangeFilter}
-            open={navDrawerOpen}
-          />
-          <div style={styles.root}>
-            <GridList
-              cellHeight={styles.gridList.cellHeight}
-              style={styles.gridList}
-            >
-              {tilesData.map((tile, i) => (
-                <PhotoTile
-                  key={i}
-                  tile={tile}
-                  handleTileClick={this.handleTileClick}
-                  style={styles.gridList.cellImg}
-                />
-              ))}
-            </GridList>
-          </div>
+      <div>
+        <AppBar
+          title="KTS Client"
+          iconClassNameRight="muidocs-icon-navigation-expand-more"
+          onLeftIconButtonTouchTap={this.handleTouchTapLeftIconButton}
+          style={styles.appBar}
+        />
+        <AppNavDrawer
+          style={styles.navDrawer}
+          location={location}
+          docked={docked}
+          onRequestChangeNavDrawer={this.handleChangeRequestNavDrawer}
+          onHandleChangeFilter={this.handleChangeFilter}
+          open={navDrawerOpen}
+        />
+        <div style={styles.root}>
+          <GridList
+            cellHeight={styles.gridList.cellHeight}
+            style={styles.gridList}
+          >
+            {tilesData.map((tile, i) => (
+              <PhotoTile
+                key={i}
+                tile={tile}
+                handleTileClick={this.handleTileClick}
+                style={styles.gridList.cellImg}
+              />
+            ))}
+          </GridList>
         </div>
-      </MuiThemeProvider>
+      </div>
     );
   }
 }

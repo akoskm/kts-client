@@ -1,4 +1,21 @@
 import React from 'react';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import { deepOrange500 } from 'material-ui/styles/colors';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
+const styles = {
+  container: {
+    textAlign: 'center',
+    paddingTop: 70,
+    margin: '0px 0px 0px 0px'
+  }
+};
+
+const muiTheme = getMuiTheme({
+  palette: {
+    accent1Color: deepOrange500
+  }
+});
 
 class AppComponent extends React.Component {
 
@@ -7,7 +24,13 @@ class AppComponent extends React.Component {
   }
 
   render() {
-    return this.props.children;
+    return (
+      <MuiThemeProvider muiTheme={muiTheme}>
+        <div style={styles.container}>
+          {this.props.children}
+        </div>
+      </MuiThemeProvider>
+    );
   }
 }
 
