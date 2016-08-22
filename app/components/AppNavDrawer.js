@@ -21,10 +21,6 @@ const styles = {
     backgroundColor: cyan500,
     paddingLeft: spacing.desktopGutter,
     marginBottom: 8
-  },
-  version: {
-    paddingLeft: spacing.desktopGutterLess,
-    fontSize: 16
   }
 };
 
@@ -40,24 +36,6 @@ class AppNavDrawer extends React.Component {
       muiVersions: [],
       filterValues: {}
     };
-  }
-
-  componentDidMount() {
-    const self = this;
-    const url = '/versions.json';
-    const request = new XMLHttpRequest();
-
-    request.onreadystatechange = function () {
-      if (request.readyState === 4 && request.status === 200) {
-        self.setState({
-          muiVersions: JSON.parse(request.responseText),
-          version: JSON.parse(request.responseText)[0]
-        });
-      }
-    };
-
-    request.open('GET', url, true);
-    request.send();
   }
 
   handleTouchTapHeader() {
