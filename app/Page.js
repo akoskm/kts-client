@@ -1,7 +1,8 @@
 import React from 'react';
 import request from 'superagent';
 import AppBar from 'material-ui/AppBar';
-import typography from 'material-ui/styles/typography';
+import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
+import FlatButton from 'material-ui/FlatButton';
 
 const styles = {
   appBar: {
@@ -60,9 +61,24 @@ class Page extends React.Component {
             onLeftIconButtonTouchTap={this.handleTouchTapLeftIconButton}
             style={styles.appBar}
           />
-        <div>
-          <h3 style={styles.h1}>{page.address}</h3>
-        </div>
+        <Card>
+          <CardHeader
+            title={page.address}
+            subtitle="Subtitle"
+            actAsExpander
+            showExpandableButton={false}
+          />
+          <CardActions>
+            <FlatButton label="Back" />
+            <FlatButton label="View All Photos" />
+          </CardActions>
+          <CardText expandable>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
+            Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
+            Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
+          </CardText>
+        </Card>
       </div>
     );
   }

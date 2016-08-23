@@ -11,7 +11,6 @@ const muiTheme = getMuiTheme({
 
 const styles = {
   container: {
-    textAlign: 'center',
     paddingTop: 70,
     margin: '0px 0px 0px 0px',
     fontFamily: muiTheme.fontFamily
