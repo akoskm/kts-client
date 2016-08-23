@@ -3,19 +3,20 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { deepOrange500 } from 'material-ui/styles/colors';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-const styles = {
-  container: {
-    textAlign: 'center',
-    paddingTop: 70,
-    margin: '0px 0px 0px 0px'
-  }
-};
-
 const muiTheme = getMuiTheme({
   palette: {
     accent1Color: deepOrange500
   }
 });
+
+const styles = {
+  container: {
+    textAlign: 'center',
+    paddingTop: 70,
+    margin: '0px 0px 0px 0px',
+    fontFamily: muiTheme.fontFamily
+  }
+};
 
 class AppComponent extends React.Component {
 
