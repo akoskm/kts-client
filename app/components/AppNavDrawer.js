@@ -21,6 +21,9 @@ const styles = {
     backgroundColor: cyan500,
     paddingLeft: spacing.desktopGutter,
     marginBottom: 8
+  },
+  filter: {
+    padding: 16
   }
 };
 
@@ -60,13 +63,14 @@ class AppNavDrawer extends React.Component {
       style
     } = this.props;
 
-    let filterMenu = Filters.map((filter, index) => {
+    const filterMenu = Filters.map((filter, index) => {
+      const currentValue = this.state.filterValues[filter.queryParam];
       return (
         <Filter
           key={index}
           filter={filter}
+          value={currentValue}
           handleChange={this.handleChange}
-          value={this.state.filterValues[filter.queryParam]}
         />
       );
     });
@@ -82,11 +86,11 @@ class AppNavDrawer extends React.Component {
         <div style={styles.logo} onTouchTap={this.handleTouchTapHeader}>
           Search
         </div>
-        {filterMenu}
+        <div style={styles.filter}>
+          {filterMenu}
+        </div>
         <Divider />
-        <SelectableList
-          onChange={this.handleRequestChangeLink}
-        >
+        <SelectableList>
           <Subheader>Resources</Subheader>
           <ListItem primaryText="Contact" value="https://github.com/callemall/material-ui" />
         </SelectableList>

@@ -2,6 +2,7 @@ import request from 'superagent';
 import React, { Component } from 'react';
 import AppBar from 'material-ui/AppBar';
 import { GridList } from 'material-ui/GridList';
+import Drawer from 'material-ui/Drawer';
 
 import PhotoTile from './components/PhotoTile';
 import AppNavDrawer from './components/AppNavDrawer';
@@ -150,12 +151,15 @@ class App extends Component {
     styles.navDrawer = {
       zIndex: styles.appBar.zIndex - 1
     };
-    let docked = false;
+    const docked = false;
     const tilesData = this.state.tilesData;
-    let navDrawerOpen = this.state.navDrawerOpen;
+    const navDrawerOpen = this.state.navDrawerOpen;
 
     return (
       <div>
+        <Drawer width={200} openSecondary open={navDrawerOpen} >
+          <AppBar title="Page-Info" />
+        </Drawer>
         <AppBar
           title="KTS Client"
           iconClassNameRight="muidocs-icon-navigation-expand-more"
