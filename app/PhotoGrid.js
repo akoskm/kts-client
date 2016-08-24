@@ -16,7 +16,7 @@ const styles = {
   }
 };
 
-class App extends Component {
+class PhotoGrid extends Component {
   constructor(props, context) {
     super(props, context);
 
@@ -52,12 +52,12 @@ class App extends Component {
   }
 }
 
-App.contextTypes = {
+PhotoGrid.contextTypes = {
   router: React.PropTypes.func.isRequired
 };
 
-App.propTypes = {
+PhotoGrid.propTypes = {
   tilesData: React.PropTypes.object.isRequired
 };
 
-export default App;
+export default PhotoGrid;

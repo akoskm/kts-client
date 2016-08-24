@@ -1,6 +1,6 @@
-import AppComponent from './app/App';
+import PhotoGridComponent from './app/PhotoGrid';
+import IndexComponent from './app/Index';
 import PageComponent from './app/Page';
-import IndexComponent from './app/Index.js';
 
 const routes = {
   path: '',
@@ -8,7 +8,7 @@ const routes = {
   childRoutes: [
     {
       path: '/',
-      component: AppComponent
+      component: PhotoGridComponent
     },
     {
       path: '/page/:nameslug',
