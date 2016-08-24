@@ -54,32 +54,24 @@ class Page extends React.Component {
       nameslug = this.props.routeParams.nameslug;
     }
     return (
-      <div>
-        <AppBar
-            title={nameslug}
-            iconClassNameRight="muidocs-icon-navigation-expand-more"
-            onLeftIconButtonTouchTap={this.handleTouchTapLeftIconButton}
-            style={styles.appBar}
-          />
-        <Card>
-          <CardHeader
-            title={page.address}
-            subtitle="Subtitle"
-            actAsExpander
-            showExpandableButton={false}
-          />
-          <CardActions>
-            <FlatButton label="Back" />
-            <FlatButton label="View All Photos" />
-          </CardActions>
-          <CardText expandable>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-            Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-            Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
-          </CardText>
-        </Card>
-      </div>
+      <Card>
+        <CardHeader
+          title={page.address}
+          subtitle="Subtitle"
+          actAsExpander
+          showExpandableButton={false}
+        />
+        <CardActions>
+          <FlatButton label="Back" />
+          <FlatButton label="View All Photos" />
+        </CardActions>
+        <CardText expandable>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
+          Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
+          Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
+        </CardText>
+      </Card>
     );
   }
 }
