@@ -106,7 +106,6 @@ class AppComponent extends React.Component {
         }
         url += tagsComponent;
       });
-      console.log(url);
       request
         .get(url)
         .send({ name: 'Manny', species: 'cat' })

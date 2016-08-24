@@ -57,7 +57,7 @@ PhotoGrid.contextTypes = {
 };
 
 PhotoGrid.propTypes = {
-  tilesData: React.PropTypes.object.isRequired
+  tilesData: React.PropTypes.array.isRequired
 };
 
 export default PhotoGrid;
