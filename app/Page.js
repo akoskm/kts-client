@@ -1,16 +1,9 @@
 import React from 'react';
 import request from 'superagent';
-import AppBar from 'material-ui/AppBar';
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 
-const styles = {
-  appBar: {
-    position: 'fixed',
-    top: 0,
-    margin: '0px 0px 0px -8px'
-  }
-};
+import PhotoGrid from './PhotoGrid';
 
 class Page extends React.Component {
 
@@ -22,7 +15,7 @@ class Page extends React.Component {
     const nameslug = this.props.routeParams.nameslug;
     if (nameslug) {
       const url = 'http://localhost:3000/api/pages/' + nameslug;
-      this.request = request
+      this.pageRequest = request
         .get(url)
         .set('Accept', 'application/json')
         .end((err, res) => {
@@ -39,45 +32,43 @@ class Page extends React.Component {
   }
 
   componentWillUnmount() {
-    if (this.request) {
-      this.request.abort();
+    if (this.pageRequest) {
+      this.pageRequest.abort();
     }
   }
 
   render() {
-    let nameslug;
     if (!this.state) {
       return (<div />);
     }
     const page = this.state.page;
-    if (this.props.routeParams) {
-      nameslug = this.props.routeParams.nameslug;
-    }
     return (
-      <Card>
-        <CardHeader
-          title={page.address}
-          subtitle="Subtitle"
-          actAsExpander
-          showExpandableButton={false}
-        />
-        <CardActions>
-          <FlatButton label="Back" />
-          <FlatButton label="View All Photos" />
-        </CardActions>
-        <CardText expandable>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-          Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-          Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
-        </CardText>
-      </Card>
+      <div>
+        <Card expanded>
+          <CardHeader
+            title={page.address}
+            subtitle="Subtitle"
+            showExpandableButton={false}
+          />
+          <CardText expandable>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
+            Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
+            Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
+          </CardText>
+          <CardActions>
+            <FlatButton label="Back" />
+          </CardActions>
+        </Card>
+        <PhotoGrid tilesData={this.props.tilesData} />
+      </div>
     );
   }
 }
 
 Page.propTypes = {
-  routeParams: React.PropTypes.object.isRequired
+  routeParams: React.PropTypes.object.isRequired,
+  tilesData: React.PropTypes.array.isRequired
 };
 
 export default Page;
