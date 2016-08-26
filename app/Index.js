@@ -45,7 +45,9 @@ class AppComponent extends React.Component {
     this.state = {
       open: false,
       navDrawerOpen: false,
-      tilesData: []
+      tilesData: [],
+      page: null,
+      filters: {}
     };
   }
 
@@ -94,34 +96,48 @@ class AppComponent extends React.Component {
     });
   }
 
-  handleChangeFilter(filters) {
+  handleChangeFilter(newFilters) {
+    const currentFilters = this.state.filters;
+    const filters = Object.assign(currentFilters, newFilters);
+    this.state.filters = filters;
+    let page = null;
+    if (filters.page) {
+      page = filters.page;
+      delete filters.page;
+    }
     const keys = Object.keys(filters);
+    let url = 'http://localhost:3000/api/search?';
+    if (page) {
+      url += 'page=' + page;
+    }
     if (keys && keys.length > 0) {
-      let tagsComponent;
-      let url = 'http://localhost:3000/api/search?';
+      let tagsComponent = '';
+      if (page) {
+        tagsComponent = '&';
+      }
       keys.forEach((k, i) => {
-        tagsComponent = 'tags='.concat(filters[k]);
+        tagsComponent += 'tags='.concat(filters[k]);
         if (i < keys.length - 1) {
           tagsComponent += '&';
         }
         url += tagsComponent;
       });
-      request
-        .get(url)
-        .send({ name: 'Manny', species: 'cat' })
-        // .set('X-API-Key', 'foobar')
-        .set('Accept', 'application/json')
-        .end((err, res) => {
-          const body = res.body;
-          if (!body.success) {
-            alert('error communicating with the server');
-          } else {
-            this.setState({
-              tilesData: this.requestBodyToTilesData(body)
-            });
-          }
-        });
     }
+    request
+      .get(url)
+      .send({ name: 'Manny', species: 'cat' })
+      // .set('X-API-Key', 'foobar')
+      .set('Accept', 'application/json')
+      .end((err, res) => {
+        const body = res.body;
+        if (!body.success) {
+          alert('error communicating with the server');
+        } else {
+          this.setState({
+            tilesData: this.requestBodyToTilesData(body)
+          });
+        }
+      });
   }
 
   requestBodyToTilesData(body) {
@@ -170,7 +186,8 @@ class AppComponent extends React.Component {
           />
           <div style={styles.root} key={tilesData.length}>
             {this.props.children && React.cloneElement(this.props.children, {
-              tilesData: tilesData
+              tilesData: tilesData,
+              onHandleChangePage: this.handleChangeFilter
             })}
           </div>
         </div>

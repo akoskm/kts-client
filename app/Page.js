@@ -13,6 +13,9 @@ class Page extends React.Component {
 
   componentWillMount() {
     const nameslug = this.props.routeParams.nameslug;
+    this.props.onHandleChangePage({
+      page: nameslug
+    });
     if (nameslug) {
       const url = 'http://localhost:3000/api/pages/' + nameslug;
       this.pageRequest = request
@@ -68,7 +71,8 @@ class Page extends React.Component {
 
 Page.propTypes = {
   routeParams: React.PropTypes.object.isRequired,
-  tilesData: React.PropTypes.array.isRequired
+  tilesData: React.PropTypes.array.isRequired,
+  onHandleChangePage: React.PropTypes.func.isRequired
 };
 
 export default Page;
