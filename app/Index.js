@@ -5,6 +5,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
 import request from 'superagent';
 
+import PhotoGrid from './PhotoGrid';
 import AppNavDrawer from './components/AppNavDrawer';
 
 const muiTheme = getMuiTheme({
@@ -184,12 +185,8 @@ class AppComponent extends React.Component {
             onHandleChangeFilter={this.handleChangeFilter}
             open={navDrawerOpen}
           />
-          <div style={styles.root} key={tilesData.length}>
-            {this.props.children && React.cloneElement(this.props.children, {
-              tilesData: tilesData,
-              onHandleChangePage: this.handleChangeFilter
-            })}
-          </div>
+          {this.props.children}
+          <PhotoGrid tilesData={tilesData} key={tilesData.length}/>
         </div>
       </MuiThemeProvider>
     );
