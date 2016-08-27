@@ -13,9 +13,6 @@ class Page extends React.Component {
 
   componentWillMount() {
     const nameslug = this.props.routeParams.nameslug;
-    this.props.onHandleChangePage({
-      page: nameslug
-    });
     if (nameslug) {
       const url = 'http://localhost:3000/api/pages/' + nameslug;
       this.pageRequest = request
@@ -46,33 +43,28 @@ class Page extends React.Component {
     }
     const page = this.state.page;
     return (
-      <div>
-        <Card expanded>
-          <CardHeader
-            title={page.address}
-            subtitle="Subtitle"
-            showExpandableButton={false}
-          />
-          <CardText expandable>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-            Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-            Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
-          </CardText>
-          <CardActions>
-            <FlatButton label="Back" />
-          </CardActions>
-        </Card>
-        <PhotoGrid tilesData={this.props.tilesData} />
-      </div>
+      <Card expanded>
+        <CardHeader
+          title={page.address}
+          subtitle="Subtitle"
+          showExpandableButton={false}
+        />
+        <CardText expandable>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
+          Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
+          Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
+        </CardText>
+        <CardActions>
+          <FlatButton label="Back" />
+        </CardActions>
+      </Card>
     );
   }
 }
 
 Page.propTypes = {
-  routeParams: React.PropTypes.object.isRequired,
-  tilesData: React.PropTypes.array.isRequired,
-  onHandleChangePage: React.PropTypes.func.isRequired
+  routeParams: React.PropTypes.object.isRequired
 };
 
 export default Page;
