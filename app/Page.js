@@ -38,9 +38,6 @@ class Page extends React.Component {
   }
 
   render() {
-    if (!this.state) {
-      return (<div />);
-    }
     const page = this.state.page;
     return (
       <Card expanded>
