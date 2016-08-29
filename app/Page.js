@@ -3,8 +3,6 @@ import request from 'superagent';
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 
-import PhotoGrid from './PhotoGrid';
-
 class Page extends React.Component {
 
   constructor(props) {
@@ -38,6 +36,9 @@ class Page extends React.Component {
   }
 
   render() {
+    if (!this.state) {
+      return (<div />);
+    }
     const page = this.state.page;
     return (
       <Card expanded>
