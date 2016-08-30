@@ -7,6 +7,12 @@ class PhotoTileComponent extends React.Component {
 
   constructor(props) {
     super(props);
+
+    this.handlePhotoTileClick = this.handlePhotoTileClick.bind(this);
+  }
+
+  handlePhotoTileClick() {
+    this.props.onPhotoTileClick(this.props.tile);
   }
 
   render() {
@@ -16,6 +22,7 @@ class PhotoTileComponent extends React.Component {
         key={tile.key}
         title={tile.title}
         subtitle={tile.author}
+        onClick={this.handlePhotoTileClick}
         actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
       >
         <img role="presentation" src={tile.img} style={this.props.style} />
@@ -26,7 +33,8 @@ class PhotoTileComponent extends React.Component {
 
 PhotoTileComponent.propTypes = {
   tile: React.PropTypes.object.isRequired,
-  style: React.PropTypes.object.isRequired
+  style: React.PropTypes.object.isRequired,
+  onPhotoTileClick: React.PropTypes.func.isRequired
 };
 
 export default PhotoTileComponent;
