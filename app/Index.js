@@ -23,7 +23,8 @@ const styles = {
   appBar: {
     position: 'fixed',
     top: 0,
-    margin: '0px 0px 0px -8px'
+    margin: '0px 0px 0px -8px',
+    zIndex: 100
   },
   root: {
     display: 'flex',
@@ -194,11 +195,11 @@ class AppComponent extends React.Component {
 }
 
 AppComponent.propTypes = {
-  children: React.PropTypes.object.isRequired
+  children: React.PropTypes.object
 };
 
 AppComponent.childContextTypes = {
-  muiTheme: React.PropTypes.object
+  muiTheme: React.PropTypes.object.isRequired
 };
 
 export default AppComponent;

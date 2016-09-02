@@ -7,8 +7,6 @@ class PhotoTileComponent extends React.Component {
 
   constructor(props) {
     super(props);
-
-    this.handlePhotoTileClick = this.handlePhotoTileClick.bind(this);
   }
 
   render() {
@@ -28,8 +26,7 @@ class PhotoTileComponent extends React.Component {
 
 PhotoTileComponent.propTypes = {
   tile: React.PropTypes.object.isRequired,
-  style: React.PropTypes.object.isRequired,
-  onPhotoTileClick: React.PropTypes.func.isRequired
+  style: React.PropTypes.object.isRequired
 };
 
 export default PhotoTileComponent;

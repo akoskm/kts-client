@@ -37,7 +37,7 @@ class PhotoGrid extends Component {
         {tilesData.map((tile, i) => {
           const link = '/page/' + tile.page;
           return (
-            <Link to={link}>
+            <Link key={i} to={link}>
               <PhotoTile
                 key={i}
                 tile={tile}
@@ -52,7 +52,7 @@ class PhotoGrid extends Component {
 }
 
 PhotoGrid.contextTypes = {
-  router: React.PropTypes.func.isRequired
+  router: React.PropTypes.object.isRequired
 };
 
 PhotoGrid.propTypes = {
