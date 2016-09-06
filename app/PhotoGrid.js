@@ -21,9 +21,15 @@ class PhotoGrid extends Component {
   constructor(props, context) {
     super(props, context);
 
+    this.handleOnClick = this.handleOnClick.bind(this);
+
     this.state = {
       tilesData: this.props.tilesData
     };
+  }
+
+  handleOnClick(tile) {
+    this.props.onClick(tile);
   }
 
   render() {
@@ -42,6 +48,7 @@ class PhotoGrid extends Component {
                 key={i}
                 tile={tile}
                 style={styles.gridList.cellImg}
+                onClick={this.handleOnClick}
               />
             </Link>
           );
@@ -56,7 +63,8 @@ PhotoGrid.contextTypes = {
 };
 
 PhotoGrid.propTypes = {
-  tilesData: React.PropTypes.array.isRequired
+  tilesData: React.PropTypes.array.isRequired,
+  onClick: React.PropTypes.func.isRequired
 };
 
 export default PhotoGrid;
