@@ -33,7 +33,7 @@ class FilterComponent extends React.Component {
 FilterComponent.propTypes = {
   handleChange: React.PropTypes.func.isRequired,
   filter: React.PropTypes.object.isRequired,
-  value: React.PropTypes.object
+  value: React.PropTypes.string
 };
 
 export default FilterComponent;
