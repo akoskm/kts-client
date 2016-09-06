@@ -76,7 +76,7 @@ class AppNavDrawer extends React.Component {
 
     return (
       <Drawer
-        style={this.props.style}
+        style={style}
         docked={docked}
         open={open}
         onRequestChange={onRequestChangeNavDrawer}
