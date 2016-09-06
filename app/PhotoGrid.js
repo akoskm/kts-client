@@ -29,6 +29,8 @@ class PhotoGrid extends Component {
   }
 
   handleOnClick(tile) {
+    const path = '/page/' + tile.page;
+    this.context.router.replace(path);
     this.props.onClick(tile);
   }
 
@@ -41,16 +43,13 @@ class PhotoGrid extends Component {
         style={styles.gridList}
       >
         {tilesData.map((tile, i) => {
-          const link = '/page/' + tile.page;
           return (
-            <Link key={i} to={link}>
-              <PhotoTile
-                key={i}
-                tile={tile}
-                style={styles.gridList.cellImg}
-                onClick={this.handleOnClick}
-              />
-            </Link>
+            <PhotoTile
+              key={i}
+              tile={tile}
+              style={styles.gridList.cellImg}
+              onClick={this.handleOnClick}
+            />
           );
         })}
       </GridList>
