@@ -54,7 +54,11 @@ class AppComponent extends React.Component {
   }
 
   componentDidMount() {
-    const url = 'http://localhost:3000/api/search?';
+    let url = 'http://localhost:3000/api/search?';
+    const nameslug = this.props.params.nameslug;
+    if (nameslug) {
+      url += 'page=' + nameslug;
+    }
     this.request = request
       .get(url)
       .set('Accept', 'application/json')
@@ -195,7 +199,12 @@ class AppComponent extends React.Component {
 }
 
 AppComponent.propTypes = {
-  children: React.PropTypes.object
+  children: React.PropTypes.object,
+  params: React.PropTypes.object
+};
+
+AppComponent.propTypes = {
+  routeParams: React.PropTypes.object.isRequired
 };
 
 AppComponent.childContextTypes = {
