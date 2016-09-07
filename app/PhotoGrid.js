@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { GridList } from 'material-ui/GridList';
+import { Link } from 'react-router';
 
 import PhotoTile from './components/PhotoTile';
 
@@ -28,8 +29,6 @@ class PhotoGrid extends Component {
   }
 
   handleOnClick(tile) {
-    const path = '/page/' + tile.page;
-    this.context.router.replace(path);
     this.props.onClick(tile);
   }
 
@@ -42,13 +41,16 @@ class PhotoGrid extends Component {
         style={styles.gridList}
       >
         {tilesData.map((tile, i) => {
+          const link = '/page/' + tile.page;
           return (
-            <PhotoTile
-              key={i}
-              tile={tile}
-              style={styles.gridList.cellImg}
-              onClick={this.handleOnClick}
-            />
+            <Link key={i} to={link}>
+              <PhotoTile
+                key={i}
+                tile={tile}
+                style={styles.gridList.cellImg}
+                onClick={this.handleOnClick}
+              />
+            </Link>
           );
         })}
       </GridList>

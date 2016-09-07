@@ -75,6 +75,12 @@ class AppComponent extends React.Component {
       });
   }
 
+  componentWillReceiveProps(newProps) {
+    this.handleChangeFilter({
+      page: newProps.params.nameslug
+    });
+  }
+
   componentWillUnmount() {
     this.request.abort();
   }
@@ -108,8 +114,10 @@ class AppComponent extends React.Component {
     const filters = Object.assign(currentFilters, newFilters);
     this.state.filters = filters;
     let page = null;
-    if (filters.page) {
-      page = filters.page;
+    if (filters.hasOwnProperty('page')) {
+      if (typeof filters.page === 'string' && filters.page.length > 0) {
+        page = filters.page;
+      }
       delete filters.page;
     }
     const keys = Object.keys(filters);
@@ -132,7 +140,7 @@ class AppComponent extends React.Component {
     }
     request
       .get(url)
-      .send({ name: 'Manny', species: 'cat' })
+      // .send({ name: 'Manny', species: 'cat' })
       // .set('X-API-Key', 'foobar')
       .set('Accept', 'application/json')
       .end((err, res) => {
@@ -167,9 +175,9 @@ class AppComponent extends React.Component {
   }
 
   handleOnClick(tile) {
-    this.handleChangeFilter({
-      page: tile.author
-    });
+    // this.handleChangeFilter({
+    //   page: tile.author
+    // });
   }
 
   render() {
