@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { GridList } from 'material-ui/GridList';
 import { Link } from 'react-router';
 
@@ -17,43 +17,24 @@ const styles = {
   }
 };
 
-class PhotoGrid extends Component {
-  constructor(props, context) {
-    super(props, context);
-
-    this.state = {
-      tilesData: this.props.tilesData
-    };
-  }
-
-  render() {
-    const tilesData = this.state.tilesData;
-
-    return (
-      <GridList
-        cellHeight={styles.gridList.cellHeight}
-        style={styles.gridList}
-      >
-        {tilesData.map((tile, i) => {
-          const link = '/page/' + tile.page;
-          return (
-            <Link key={i} to={link}>
-              <PhotoTile
-                key={i}
-                tile={tile}
-                style={styles.gridList.cellImg}
-              />
-            </Link>
-          );
-        })}
-      </GridList>
-    );
-  }
-}
-
-PhotoGrid.contextTypes = {
-  router: React.PropTypes.object.isRequired
-};
+const PhotoGrid = (props) =>
+  <GridList
+    cellHeight={styles.gridList.cellHeight}
+    style={styles.gridList}
+  >
+    {props.tilesData.map((tile, i) => {
+      const link = '/page/' + tile.page;
+      return (
+        <Link key={i} to={link}>
+          <PhotoTile
+            key={i}
+            tile={tile}
+            style={styles.gridList.cellImg}
+          />
+        </Link>
+      );
+    })}
+  </GridList>;
 
 PhotoGrid.propTypes = {
   tilesData: React.PropTypes.array.isRequired
