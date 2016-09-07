@@ -43,7 +43,6 @@ class AppComponent extends React.Component {
     this.handleRequestClose = this.handleRequestClose.bind(this);
     this.handleChangeFilter = this.handleChangeFilter.bind(this);
     this.handleTouchTap = this.handleTouchTap.bind(this);
-    this.handleOnClick = this.handleOnClick.bind(this);
 
     this.state = {
       open: false,
@@ -174,12 +173,6 @@ class AppComponent extends React.Component {
     return tilesData;
   }
 
-  handleOnClick(tile) {
-    // this.handleChangeFilter({
-    //   page: tile.author
-    // });
-  }
-
   render() {
     styles.navDrawer = {
       zIndex: styles.appBar.zIndex - 1
@@ -206,7 +199,7 @@ class AppComponent extends React.Component {
             open={navDrawerOpen}
           />
           {this.props.children}
-          <PhotoGrid tilesData={tilesData} key={tilesData.length} onClick={this.handleOnClick}/>
+          <PhotoGrid tilesData={tilesData} key={tilesData.length}/>
         </div>
       </MuiThemeProvider>
     );
